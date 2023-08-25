@@ -29,9 +29,13 @@ class Game extends ActiveRecord
     {
         return $this->hasMany(Genre::class, ['id' => 'genre_id'])->via('toGenres');
     }
-    public static function findGames()
+    public static function findGames($genre_id)
     {
-        return self::find();
+        $games = self::find()->joinWith('toGenres');
+        if ($genre_id) {
+            $games->andWhere(['genre_id' => $genre_id]);
+        }
+        return $games;
     }
 
     public static function deleteGame($id)

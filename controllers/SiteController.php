@@ -161,7 +161,7 @@ class SiteController extends Controller
         $genres = Genre::findAllGenres();
         $game = new GameForm();
 
-        $games = Game::findGames();
+        $games = Game::findGames(Yii::$app->request->get('genre'));
         $dataProvider = new ActiveDataProvider([
             'query' => $games,
             'pagination' => false,

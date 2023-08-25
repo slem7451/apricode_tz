@@ -22,6 +22,13 @@ $this->title = 'Игры';
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add-game-modal">Добавить
             игру
         </button>
+        <div class="col-3 mt-3">
+        <?= Html::dropDownList('select-genre', null, ArrayHelper::map($genres, 'id', 'name'), [
+            'prompt' => 'Все жанры',
+            'class' => 'form-control',
+            'id' => 'select-genre-dl'
+        ]) ?>
+        </div>
         <div class="mt-3">
             <?php Pjax::begin(['id' => 'game-pjax']); ?>
             <?= GridView::widget([
@@ -53,7 +60,7 @@ $this->title = 'Игры';
                         'contentOptions' => ['class' => 'text-center']
                     ],
                     [
-                        'content' => function($model) {
+                        'content' => function ($model) {
                             return '<button class="btn btn-primary btn-sm update-btn" title="Редактировать" id="' . $model->id . '-upd">Р</button>
                                         <button class="btn btn-danger btn-sm delete-btn" title="Удалить" id="' . $model->id . '-del">Х</button>';
                         },
@@ -196,6 +203,13 @@ $this->registerJS(<<<JS
     $(document).on('click', '.delete-btn', function() {
         var idD = this.id.split('-')[0];
         $.pjax.reload({container: '#game-pjax', data: {idD: idD}, replace: false});
+    })
+JS
+);
+
+$this->registerJS(<<<JS
+    $(document).on('change', '#select-genre-dl', function() {
+        $.pjax.reload({container: '#game-pjax', data: {genre: this.value}, replace: false});
     })
 JS
 );
