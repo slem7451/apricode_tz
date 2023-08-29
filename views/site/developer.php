@@ -79,7 +79,7 @@ $this->registerJS(<<<JS
     $(document).on('beforeSubmit', '#add-dev-form', function() {
         var data = $(this).serialize();
         $.ajax({
-            url: '/index.php?r=site%2Fdeveloper',
+            url: '/site/developer',
             method: 'POST',
             data: data,
             success: function (result) {
@@ -113,7 +113,7 @@ $this->registerJS(<<<JS
         var data = $(this).serialize();
         data += '&idU=' + $('.upd-dev-id').html();
         $.ajax({
-            url: '/index.php?r=site%2Fdeveloper',
+            url: '/site/developer',
             method: 'POST',
             data: data,
             success: function (result) {

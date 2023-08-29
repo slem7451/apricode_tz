@@ -77,7 +77,7 @@ $this->registerJS(<<<JS
     $(document).on('beforeSubmit', '#add-genre-form', function() {
         var data = $(this).serialize();
         $.ajax({
-            url: '/index.php?r=site%2Fgenre',
+            url: '/site/genre',
             method: 'POST',
             data: data,
             success: function (result) {
@@ -111,7 +111,7 @@ $this->registerJS(<<<JS
         var data = $(this).serialize();
         data += '&idU=' + $('.upd-genre-id').html();
         $.ajax({
-            url: '/index.php?r=site%2Fgenre',
+            url: '/site/genre',
             method: 'POST',
             data: data,
             success: function (result) {

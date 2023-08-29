@@ -152,7 +152,7 @@ $this->registerJS(<<<JS
     $(document).on('beforeSubmit', '#add-game-form', function() {
         var data = $(this).serialize();
         $.ajax({
-            url: '/index.php?r=site%2Fgame',
+            url: '/site/game',
             method: 'POST',
             data: data,
             success: function (result) {
@@ -186,7 +186,7 @@ $this->registerJS(<<<JS
         var data = $(this).serialize();
         data += '&idU=' + $('.upd-game-id').html();
         $.ajax({
-            url: '/index.php?r=site%2Fgame',
+            url: '/site/game',
             method: 'POST',
             data: data,
             success: function (result) {
