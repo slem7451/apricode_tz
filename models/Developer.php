@@ -12,6 +12,12 @@ use yii\db\ActiveRecord;
  */
 class Developer extends ActiveRecord
 {
+    public function rules()
+    {
+        return [
+            ['name', 'required']
+        ];
+    }
     public function getToGames()
     {
         return $this->hasMany(DeveloperToGame::class, ['developer_id' => 'id']);

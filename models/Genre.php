@@ -12,6 +12,12 @@ use yii\db\ActiveRecord;
  */
 class Genre extends ActiveRecord
 {
+    public function rules()
+    {
+        return [
+            ['name', 'required']
+        ];
+    }
     public function getToGames()
     {
         return $this->hasMany(GenreToGame::class, ['genre_id' => 'id']);

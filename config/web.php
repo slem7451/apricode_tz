@@ -14,7 +14,9 @@ $config = [
     ],
     'components' => [
         'request' => [
-            // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
+            'parsers' => [
+                'application/json' => 'yii\web\JsonParser',
+            ],
             'cookieValidationKey' => 'f3B1bw9g19SP6ZlTtIcgs7NlQu05WGCI',
         ],
         'cache' => [
@@ -45,8 +47,12 @@ $config = [
         'db' => $db,
         'urlManager' => [
             'enablePrettyUrl' => true,
+            'enableStrictParsing' => true,
             'showScriptName' => false,
             'rules' => [
+                ['class' => 'yii\rest\UrlRule', 'controller' => 'developer'],
+                ['class' => 'yii\rest\UrlRule', 'controller' => 'genre'],
+                ['class' => 'yii\rest\UrlRule', 'controller' => 'game', 'extraPatterns' => ['GET genre' => 'genre']],
             ],
         ],
     ],
